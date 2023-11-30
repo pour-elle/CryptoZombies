@@ -16,6 +16,8 @@ contract ZombieFactory is Ownable(msg.sender) {
         uint dna;
         uint32 level;
         uint32 readyTime;
+        uint16 winCount;
+        uint16 lossCount;
     }
 
     Zombie[] public zombies;
@@ -28,7 +30,9 @@ contract ZombieFactory is Ownable(msg.sender) {
             name: _name,
             dna: _dna,
             level: 1,
-            readyTime: uint32(block.timestamp + cooldownTime)
+            readyTime: uint32(block.timestamp + cooldownTime),
+            winCount: 0,
+            lossCount: 0
         }));
         zombieToOwner[zombies.length - 1] = msg.sender;
         ownerZombieCount[msg.sender]++;
